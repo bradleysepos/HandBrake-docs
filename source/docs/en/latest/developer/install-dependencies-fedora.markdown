@@ -66,10 +66,19 @@ Additional dependencies not available in the base repository:
 
 - x264-devel [RPM Fusion]
 
+Dolby Vision dependencies (optional):
+
+- rustup
+
 Intel Quick Sync Video dependencies (optional):
 
 - libva-devel
 - libdrm-devel
+
+Nvidia NVENC/NVDEC dependencies (optional):
+
+- clang
+- llvm
 
 Graphical interface dependencies:
 
@@ -88,9 +97,20 @@ Install the [RPM Fusion](http://rpmfusion.org) Free repository and related addit
     sudo dnf5 install --nogpgcheck https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
     sudo dnf5 install x264-devel
 
+To build with Dolby Vision support, install the Rust dependencies.
+
+    sudo dnf5 install rustup
+    rustup-init -y && source "~/.cargo/env"
+    rustup target add x86_64-pc-windows-gnu
+    cargo install cargo-c
+
 To build with Intel Quick Sync Video support, install the QSV dependencies.
 
     sudo dnf5 install libva-devel libdrm-devel
+
+To build with Nvidia NVENC/NVDEC support, install the CUDA LLVM toolchain dependencies.
+
+    sudo dnf5 install clang llvm
 
 To build the GTK [GUI](abbr:Graphical User Interface), install the graphical interface dependencies.
 
